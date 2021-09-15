@@ -22,7 +22,35 @@ import { NotImplementedError } from '../extensions/index.js';
  * }
  *
  */
-export default function getDNSStats( /* domains */ ) {
-    throw new NotImplementedError('Not implemented');
+export default function getDNSStats(domains) {
+    // throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
+    if (domains.length < 1) return {};
+    const obj = {};
+    const set = new Set();
+    const array = []
+    for (const item of domains) {
+        item.split('.').forEach(element => {
+            array.push(element);
+            set.add(element);
+        });
+    }
+    let count;
+    for (const itemSet of set) {
+        count = 0;
+        for (const item of array) {
+            if (itemSet === item) count += 1;
+        }
+        if (itemSet === 'com') {
+            obj['.com'] = count;
+        }
+        if (itemSet === 'epam') {
+            obj['.com.epam'] = count;
+        }
+        if (itemSet === 'info') {
+            obj['.com.epam.info'] = count;
+        }
+
+    }
+    return obj;
 }

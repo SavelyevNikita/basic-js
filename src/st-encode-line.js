@@ -13,17 +13,21 @@ import { NotImplementedError } from '../extensions/index.js';
 export default function encodeLine(str) {
     // throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
-    const cleanString = [];
-    let string = '';
-    for (const item of str) {
-        if (!cleanString.includes(item)) cleanString.push(item);
-    }
-    for (const itemCleanString of cleanString) {
-        let count = 0;
-        for (const item of str) {
-            if (itemCleanString === item) count += 1;
+    const array = [];
+    const finalyArray = [];
+    const strArray = str.split('');
+    let count = 0;
+    for (let i = 0; i < strArray.length; i += 1) {
+        if (!array.includes(strArray[i]) && array.length === 0) array.push(strArray[i]);
+
+        if (array.includes(strArray[i])) count += 1;
+
+        if (!array.includes(strArray[i + 1])) {
+            if (count > 1) finalyArray.push(count);
+            finalyArray.push(strArray[i]);
+            array.pop();
+            count = 0;
         }
-        string += count + itemCleanString;
     }
-    return string;
+    return finalyArray.join('');
 }

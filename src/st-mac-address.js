@@ -17,7 +17,6 @@ import { NotImplementedError } from '../extensions/index.js';
 export default function isMAC48Address(n) {
     // throw new NotImplementedError('Not implemented');
     if (n === 'not a MAC-48 address') return false;
-
     const arr = n.split('-').join('');
     for (const item of arr) {
         // console.log(item);

@@ -19,7 +19,7 @@ export default class DepthCalculator {
 
         // const deepCount = (arr) => {
         return arr.reduce((acc, val) => {
-            return acc + (Array.isArray(val) ? calculateDepth(val) : 0);
+            return acc + (Array.isArray(val) ? this.calculateDepth(val) : 0);
         }, 1);
     };
 }
